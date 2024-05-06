@@ -303,9 +303,23 @@ def main():
                             print(f'\t{nombre} {apellido} de DNI {DNI} entro a la cola de espera Caja Nro 2')
                             carrito.dato.nro_cola = 2
                         elif estado == 4:
-                            cola_de_la_caja.agregar_a_la_cola(3, Nodo(Cliente(DNI, nombre, apellido, estado)))
-                            print(f'\t{nombre} {apellido} de DNI {DNI} entro a la cola de espera Caja Nro 3')
-                            carrito.dato.nro_cola = 3
+                            if cola_de_la_caja.cantidad_de_clientes(1) == 0:
+                                cola_de_la_caja.agregar_a_la_cola(1, Nodo(Cliente(DNI, nombre, apellido, estado)))
+                                print('\tLa Caja Nro 1 se encuentra vacia, el cliente normal identificado como:')
+                                print(f'\t\t{nombre} {apellido} de DNI {DNI} entro a la cola de espera Caja Nro 1')
+                                carrito.dato.nro_cola = 1
+                            elif cola_de_la_caja.cantidad_de_clientes(2) == 0:
+                                cola_de_la_caja.agregar_a_la_cola(2, Nodo(Cliente(DNI, nombre, apellido, estado)))
+                                print('\tLa Caja Nro 2 se encuentra vacia, el cliente normal identificado como:')
+                                print(f'\t\t{nombre} {apellido} de DNI {DNI} entro a la cola de espera Caja Nro 2')
+                                carrito.dato.nro_cola = 2
+                            else:
+                                cola_de_la_caja.agregar_a_la_cola(3, Nodo(Cliente(DNI, nombre, apellido, estado)))
+                                print(f'\t{nombre} {apellido} de DNI {DNI} entro a la cola de espera Caja Nro 3')
+                                carrito.dato.nro_cola = 3
+                            # cola_de_la_caja.agregar_a_la_cola(3, Nodo(Cliente(DNI, nombre, apellido, estado)))
+                            # print(f'\t{nombre} {apellido} de DNI {DNI} entro a la cola de espera Caja Nro 3')
+                            # carrito.dato.nro_cola = 3
                         carrito = None
                     else:
                         print(f'\t{nombre} {apellido} de DNI {DNI} entro a la COLA DE ESPERA DE CARRITOS DISPONIBLES')
@@ -365,7 +379,7 @@ def main():
                                     carrito.dato.nro_cola = 1
                                 elif cola_de_la_caja.cantidad_de_clientes(2) == 0:
                                     cola_de_la_caja.agregar_a_la_cola(2, cliente)
-                                    print('\tLa Caja Nro 1 se encuentra vacia, el cliente normal identificado como:')
+                                    print('\tLa Caja Nro 2 se encuentra vacia, el cliente normal identificado como:')
                                     print(f'\t\t{cliente.dato.nombre} {cliente.dato.apellido} de DNI {cliente.dato.DNI} entro a la cola de espera Caja Nro 2')
                                     carrito.dato.nro_cola = 2
                                 else:
